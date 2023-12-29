@@ -91,6 +91,10 @@ class Mermin(AbstractDielectric):
             (size(n),). If both arguments are scalars, the result is a complex
             scalar as well.
         """
+        # convert `frequency` to ndarray so collisionrate uses element-wise
+        # evaluations
+        frequency = np.asanyarray(frequency)
+
         # Default `collisionrate` is a function that returns 0.
         if collisionrate is None:
             # Use `numpy.full_like` to keep shape on input if it's an array
