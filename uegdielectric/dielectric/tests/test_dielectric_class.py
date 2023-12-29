@@ -46,6 +46,12 @@ class TestMerminConstruction:
             eps = Mermin(self.elecgas)(np.linspace(0, 1, n), 3.14)
             assert (9,) == eps.shape
 
+    def test_Mermin_list_input(self):
+        """Test when `frequency` is a list, not a numpy.ndarray."""
+        freq = [1, 2]
+        Mermin(self.elecgas)(1, freq, collisionrate=lambda x: x + 1j * x)
+        assert True
+
 
 class TestRPA:
     """Tests for the initialization and use of the RPA model."""
